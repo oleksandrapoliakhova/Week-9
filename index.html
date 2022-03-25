@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head>
+    <title>Treemap layout (with labels)</title>
+    <script src="d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.1/echarts.min.js"></script>
+</head>
+<body>
+<div id="main" style="width: 600px; height: 400px">
+</div>
+<script>
+    const container = document.getElementById("main");
+    const treemap = echarts.init(container);
+
+    d3.json("data.json").then(
+        data => {
+            console.log(data);
+
+            const option = {
+                title: {
+                    text: "e-charts"
+                },
+                series: {
+                    type: "treemap",
+                    data: [{
+                        name: "A",
+                        children: [
+                            {
+                                name: "B",
+                                value: 80,
+                                itemStyle: {color: '#73c0de'}
+                            },
+                            {
+                                name: "C",
+                                value: 120,
+                                itemStyle: {color: '#3ba272'}
+                            },
+                        ],
+                    }, {
+                        name: "B",
+                        children: [
+                            {
+                                name: "D",
+                                value: 30,
+                                itemStyle: {color: '#fc8452'}
+                            },
+                            {
+                                name: "E",
+                                value: 50,
+                                itemStyle: {color: '#5470c6'}
+                            },
+                        ],
+                    },
+                        {
+                            name: "C",
+                            children: [
+                                {
+                                    name: "F",
+                                    value: 20,
+                                    itemStyle: {color: '#91cc75'}
+                                },
+                                {
+                                    name: "G",
+                                    value: 40,
+                                    itemStyle: {color: '#fac858'}
+                                },
+                                {
+                                    name: "H",
+                                    value: 60,
+                                    itemStyle: {color: '#ee6666'}
+                                },
+                            ],
+                        }]
+                }
+            };
+            treemap.setOption(option, true)
+        }
+    )
+
+</script>
+</body>
+</html>
